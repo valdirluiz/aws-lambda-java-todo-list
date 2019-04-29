@@ -19,7 +19,7 @@ public class CreateTodoHandler implements RequestHandler<Map<String, Object>, Ap
 	public ApiGatewayResponse handleRequest(Map<String, Object> input, Context context) {
 
 		try {
-			//JsonNode body = new ObjectMapper().readTree((String) input.get("body"));
+			JsonNode body = new ObjectMapper().readTree((String) input.get("body"));
 
 			Todo todo = new Todo();
 			todo.setName("teste");

@@ -69,9 +69,7 @@ public class Todo {
 		this.mapper = Todo.db_adapter.createDbMapper(mapperConfig);
 	}
 
-	public String toString() {
-		return String.format("Todo [id=%s, name=%s, status=$%f]", this.id, this.name, this.status);
-	}
+	 
 
 	public Boolean ifTableExists() {
 		return this.client.describeTable(TODOS_TABLE_NAME).getTable().getTableStatus().equals("ACTIVE");
@@ -106,8 +104,7 @@ public class Todo {
 	}
 
 	public void save(Todo todo) throws IOException {
-		logger.info("Todo - save(): " + todo.toString());
-		this.mapper.save(todo);
+ 		this.mapper.save(todo);
 	}
 
 	public Boolean delete(String id) throws IOException {
