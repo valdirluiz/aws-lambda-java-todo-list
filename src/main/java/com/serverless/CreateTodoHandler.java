@@ -19,20 +19,20 @@ public class CreateTodoHandler implements RequestHandler<Map<String, Object>, Ap
 	public ApiGatewayResponse handleRequest(Map<String, Object> input, Context context) {
 
 		try {
-			JsonNode body = new ObjectMapper().readTree((String) input.get("body"));
+			//JsonNode body = new ObjectMapper().readTree((String) input.get("body"));
 
 			Todo todo = new Todo();
-			todo.setName(body.get("name").asText());
-			todo.setStatus(body.get("status").asText());
-			todo.save();
+			todo.setName("teste");
+			todo.setStatus("teste");
+			todo.save(todo);
 
 			return ApiGatewayResponse.builder().setStatusCode(200).setObjectBody(todo)
 					.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless")).build();
 
 		} catch (Exception ex) {
-			logger.error("Error in saving todo: " + ex);
+			logger.error("Error in saving todo: " + ex.toString());
 
-			Response responseBody = new Response("Falha ao salvar: ", input);
+			Response responseBody = new Response("Falha ao salvar: " + ex.toString(), input);
 			return ApiGatewayResponse.builder().setStatusCode(500).setObjectBody(responseBody)
 					.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless")).build();
 		}

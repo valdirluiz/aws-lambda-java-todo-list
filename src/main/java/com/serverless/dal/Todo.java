@@ -18,7 +18,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
-@DynamoDBTable(tableName = "PLACEHOLDER_TODOS_TABLE_NAME")
+@DynamoDBTable(tableName = "java-todos-dev")
 public class Todo {
 
 	private static final String TODOS_TABLE_NAME = System.getenv("TODOS_TABLE_NAME");
@@ -105,9 +105,9 @@ public class Todo {
 		return todo;
 	}
 
-	public void save() throws IOException {
-		logger.info("Todo - save(): " + this.toString());
-		this.mapper.save(this);
+	public void save(Todo todo) throws IOException {
+		logger.info("Todo - save(): " + todo.toString());
+		this.mapper.save(todo);
 	}
 
 	public Boolean delete(String id) throws IOException {
